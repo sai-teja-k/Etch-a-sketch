@@ -1,6 +1,15 @@
 let sketch = document.querySelector("#sketch");
 let size_input = document.querySelector("#size");
 let set_size_button = document.querySelector("#set");
+let reset = document.querySelector("#reset");
+
+let color = "black";
+
+reset.addEventListener("click",() => {
+    let boxes = sketch.querySelectorAll("div");
+    boxes.forEach((box) => box.remove());
+})
+
 
 set_size_button.addEventListener("click",() => {
     grid_size = size_input.value;
@@ -8,7 +17,7 @@ set_size_button.addEventListener("click",() => {
         alert("PLEASE ENTER A VALUE!");
     }
     else if(grid_size < 5 || grid_size > 100){
-        alert("PLEASE ENTER VALUE BETWEEN 5 AND 100 ONLY!");
+        alert("PLEASE ENTER VALUE FROM 5 AND 100 ONLY!");
     }
     else{
         createGrid(grid_size);
@@ -23,7 +32,18 @@ function createGrid(size){
 
     for(let i =0;i<size*size;i++){
         let div = document.createElement("div");
-        div.style.border = "1px solid black";
         sketch.insertAdjacentElement("beforeend" , div);
+        div.addEventListener("mouseover",changeColor);
     }
+}
+
+function changeColor(){
+    if(color === "rainbow")
+        this.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    else
+        this.style.background = color;
+}
+
+function colorChoice(choice){
+    color = choice ;
 }
