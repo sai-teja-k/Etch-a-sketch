@@ -1,9 +1,9 @@
 let sketch = document.querySelector("#sketch");
-let size = document.querySelector("#size");
-let set_size = document.querySelector("#set");
+let size_input = document.querySelector("#size");
+let set_size_button = document.querySelector("#set");
 
-set_size.addEventListener("click",() => {
-    grid_size = size.value;
+set_size_button.addEventListener("click",() => {
+    grid_size = size_input.value;
     if(grid_size == ""){
         alert("PLEASE ENTER A VALUE!");
     }
@@ -15,10 +15,11 @@ set_size.addEventListener("click",() => {
     }
 })
 
-
 function createGrid(size){
     sketch.style.gridTemplateColumns = `repeat(${size},1fr)`;
     sketch.style.gridTemplateColumns = `repeat(${size},1fr)`;
+    let boxes = sketch.querySelectorAll("div");
+    boxes.forEach((box) => box.remove());
 
     for(let i =0;i<size*size;i++){
         let div = document.createElement("div");
