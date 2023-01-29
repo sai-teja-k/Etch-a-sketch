@@ -22,7 +22,7 @@ set_size_button.addEventListener("click",() => {
     }
     else{
         createGrid(grid_size);
-        document.querySelector("#mode").innerHTML = "MODE : Coloring!" ;
+        document.querySelector("#mode").innerHTML = "MODE : Coloring! </br></br> click anywhere to draw" ;
     }
 })
 
@@ -52,7 +52,7 @@ function colorChoice(choice){
     color = choice ;
 };
 
-document.querySelector("#sketch").addEventListener("click" ,(e) => {
+document.querySelector("body").addEventListener("click" ,(e) => {
     if(e.target.tagName != "BUTTON"){
         click = !click;
         if(click){
