@@ -4,10 +4,11 @@ let set_size_button = document.querySelector("#set");
 let reset = document.querySelector("#reset");
 
 let color = "black";
+let click = true;
 
 reset.addEventListener("click",() => {
     let boxes = sketch.querySelectorAll("div");
-    boxes.forEach((box) => box.remove());
+    boxes.forEach((box) => box.style.background = "white");
 })
 
 
@@ -21,6 +22,7 @@ set_size_button.addEventListener("click",() => {
     }
     else{
         createGrid(grid_size);
+        document.querySelector("#mode").innerHTML = "MODE : Coloring!" ;
     }
 })
 
@@ -38,12 +40,26 @@ function createGrid(size){
 }
 
 function changeColor(){
-    if(color === "rainbow")
-        this.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    else
-        this.style.background = color;
-}
+    if(click){
+        if(color === "rainbow")
+            this.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        else
+            this.style.background = color;
+    }
+};
 
 function colorChoice(choice){
     color = choice ;
-}
+};
+
+document.querySelector("#sketch").addEventListener("click" ,(e) => {
+    if(e.target.tagName != "BUTTON"){
+        click = !click;
+        if(click){
+            document.querySelector("#mode").innerHTML = "MODE : Coloring!" ;
+        }
+        else{
+            document.querySelector("#mode").innerHTML = "MODE : Not Coloring!" ;
+        }
+    }
+}); 
